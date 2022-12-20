@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="assets/css/validation.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
+		<link rel="shortcut icon" href="assets/images/Logo.png">
 	</head>
 
 	<body>
@@ -52,33 +53,38 @@
 						<form name="reserve" action="index.html" method="POST" onsubmit="return checkForm(this);">
 							<div class="formData">
 								<label for="firstname">Prénom</label><br>
-								<input class="text-control" type="text" id="firstname" name="firstname" minlength="2" />
+								<input class="text-control" type="text" id="firstname" name="firstname" minlength="2" onblur="checkField(this)" />
 								<br>
 							</div>
-							<div class="erreur" id="error-firstname">message d'erreur</div>
+							<div class="erreur" id="error-firstname"></div>
 
 							<div class="formData">
 								<label for="lastname">Nom</label><br>
-								<input class="text-control" type="text" id="lastname" name="lastname"/>
+								<input class="text-control" type="text" id="lastname" name="lastname" onblur="checkField(this)" />
 								<br>
 							</div>
+							<div class="erreur" id="error-lastname"></div>
 
 							<div class="formData">
 								<label for="email">E-mail</label><br>
-								<input class="text-control" type="email" id="email" name="email" />
+								<input class="text-control"  id="email" name="email" onblur="checkField(this)" />
 								<br>
 							</div>
+							<div class="erreur" id="error-email"></div>
 
 							<div class="formData">
 								<label for="birthdate">Date de naissance</label><br>
 								<input class="text-control" type="date" id="birthdate" name="birthdate" />
 								<br>
 							</div>
+							<div class="erreur" id="error-birthdate"></div>
+
 
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
 								<input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"  />
 							</div>
+							<div class="erreur" id="error-quantity"></div>
 
 							<p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
 							<div class="formData">
@@ -111,23 +117,27 @@
 									<span class="checkbox-icon"></span>
 									Los Angeles</label>
 							</div>
+							<div class="erreur" id="error-location"></div>
 
 							<div
 									class="formData">
-								<input class="checkbox-input" type="checkbox" id="conditions" checked />
+								<input class="checkbox-input" type="checkbox" name="conditions" id="conditions" checked />
 								<label class="checkbox2-label" for="conditions" required>
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
 								</label>
 								<br>
-								<input class="checkbox-input" type="checkbox" id="subscribe" />
+								<input class="checkbox-input" type="checkbox" name="subscribe" id="subscribe" />
 								<label class="checkbox2-label" for="subscribe">
 									<span class="checkbox-icon"></span>
 									Je souhaite être prévenu des prochains évènements.
 								</label>
 								<br>
 							</div>
-							<input class="btn-submit" type="submit" class="button" value="C'est parti" />
+							<div class="erreur" id="error-conditions"></div>
+							<div class="erreur" id="error-subscribe"></div>
+							<input class="btn-submit" type="submit" name="submit" value="C'est parti"/>
+							<div class="erreur" id="error-submit"></div>
 						</form>
 					</div>
 				</div>

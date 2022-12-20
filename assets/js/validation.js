@@ -31,7 +31,6 @@ const errorMessages = {
   function checkField(field)
   {
     if(!areRulesValidated(field.name, field.value)) {
-      eval("alert(errorMessages." + field.id + ");");
       return false;
     }
   
@@ -49,17 +48,17 @@ const errorMessages = {
         if (fieldValue.length>2 && fieldValue != null) {
           returnValue = true;
         }
-        else {
-            //showError(fieldName,'pas cool');
-        }
+
       break;
   
       case "email":
-        return String(fieldValue)
+        if(String(fieldValue)
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+        )) {
+          returnValue = true;
+        }
       break;
   
       case "birthdate":
@@ -83,20 +82,29 @@ const errorMessages = {
   
       case "subscribe":
           returnValue = true;
-          break;
+      break;
   
       default:
     }
-  
+    
+    console.log(fieldName + ': ' + returnValue);
+
+    if(!returnValue) {
+      showError(fieldName);
+    } 
+    else {
+      hideError(fieldName);
+    }
     return returnValue;
   }
 
-function showError(fieldId, message) {
-    mydiv = document.getElementById('error-' . fieldId);
-    mydiv.style.display = "block"
+function showError(fieldName) {
+    mydiv = document.getElementById('error-' + fieldName);
+    mydiv.style.display = "block";
+    mydiv.textContent = errorMessages[fieldName];
 }
 
-function hideError(id, message) {
-    mydiv = document.getElementById('error-' . id);
-    mydiv.style.display = "none"
+function hideError(fieldName) {
+    mydiv = document.getElementById('error-' + fieldName);
+    mydiv.style.display = "none";
 }
