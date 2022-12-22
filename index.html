@@ -48,26 +48,26 @@
 
 			<div class="bground">
 				<div class="content">
-					<span class="close" onclick="closeModal()"></span>
+					<span class="close"></span>
 					<div class="modal-body">
-						<form name="reserve" action="index.html" method="POST" onsubmit="return checkForm(this);">
+						<form name="reserve" action="index.html" method="POST">
 							<div class="formData">
 								<label for="firstname">Prénom</label><br>
-								<input class="text-control" type="text" id="firstname" name="firstname" minlength="2" onblur="checkField(this)" />
+								<input class="text-control" type="text" id="firstname" name="firstname" minlength="2" />
 								<br>
 							</div>
 							<div class="erreur" id="error-firstname"></div>
 
 							<div class="formData">
 								<label for="lastname">Nom</label><br>
-								<input class="text-control" type="text" id="lastname" name="lastname" onblur="checkField(this)" />
+								<input class="text-control" type="text" id="lastname" name="lastname" />
 								<br>
 							</div>
 							<div class="erreur" id="error-lastname"></div>
 
 							<div class="formData">
 								<label for="email">E-mail</label><br>
-								<input class="text-control"  id="email" name="email" onblur="checkField(this)" />
+								<input class="text-control"  id="email" name="email" />
 								<br>
 							</div>
 							<div class="erreur" id="error-email"></div>
@@ -82,7 +82,7 @@
 
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-								<input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"  />
+								<input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" />
 							</div>
 							<div class="erreur" id="error-quantity"></div>
 
@@ -126,6 +126,8 @@
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
 								</label>
+								<div class="erreur" id="error-conditions"></div>
+
 								<br>
 								<input class="checkbox-input" type="checkbox" name="subscribe" id="subscribe" />
 								<label class="checkbox2-label" for="subscribe">
@@ -134,7 +136,6 @@
 								</label>
 								<br>
 							</div>
-							<div class="erreur" id="error-conditions"></div>
 							<div class="erreur" id="error-subscribe"></div>
 							<input class="btn-submit" type="submit" name="submit" value="C'est parti"/>
 							<div class="erreur" id="error-submit"></div>
