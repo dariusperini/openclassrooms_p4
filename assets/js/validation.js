@@ -41,8 +41,8 @@ function checkForm(form) {
   //  Every fileds are ok, we send the form and show the success message
   if(validate) {
     hideForm();
-    form.submit();
     displaySuccess();
+    form.submit();
   }
 }
 
