@@ -6,12 +6,13 @@
  */
 
 const form = document.querySelector('form');
+const today = new Date();
 
 const errorMessages = {
   "firstname": "Le champ Prénom doit avoir un minimum de 2 caractères et ne doit pas être vide.",
   "lastname": "Le champ Nom doit avoir un minimum de 2 caractères et ne doit pas être vide.",
   "email": "L'adresse électronique est invalide.",
-  "birthdate": "La date de naissance saisie est invalide.",
+  "birthdate": "La date de naissance ne peut être vide et doit être dans le passé !",
   "quantity": "Le nombre de concours doit être numérique.",
   "conditions": "Vous devez accepeter les conditions d'utilisation.",
   "location": "Vous devez indiquer à quel tournoi vous avez participé cette année."
@@ -30,26 +31,26 @@ const errorMessages = {
 function checkForm(form) {
   let validate = true;
 
+  // For each element of the form, we check if the rules are validated
   for (let field = 0; field < form.elements.length; field++) {
-    if (!checkField(form.elements[field])) {
+    if (!isRulesValidated(form.elements[field])) {
       validate = false;
     }
   }
 
+  //  Every fileds are ok, we send the form and show the success message
   if(validate) {
     hideForm();
-    displaySuccess();
     form.submit();
+    displaySuccess();
   }
 }
 
 
-function checkField(field) {
-  return areRulesValidated(field.name, field.value);
-}
-
 // Rules checking function
-function areRulesValidated(fieldName, fieldValue) {
+function isRulesValidated(field) {
+  let fieldName = field.name;
+  let fieldValue = field.value;
   let returnValue = false;
 
   switch (fieldName) {
@@ -71,7 +72,8 @@ function areRulesValidated(fieldName, fieldValue) {
       break;
 
     case "birthdate":
-      if (fieldValue != null) {
+      var date = new Date(fieldValue);
+      if (!!fieldValue && date < today) {
         returnValue = true;
       }
       break;
@@ -116,6 +118,7 @@ function areRulesValidated(fieldName, fieldValue) {
   return returnValue;
 }
 
+// Show the erreor for a specified field
 function showError(fieldName) {
   mydiv = document.getElementById('error-' + fieldName);
   mydiv.style.display = "block";
@@ -123,28 +126,24 @@ function showError(fieldName) {
   mydiv.style.borderColor = "red"; 
 }
 
+// Hide the erreor for a specified field
 function hideError(fieldName) {
   mydiv = document.getElementById('error-' + fieldName);
   mydiv.style.display = "none";
   mydiv.style.borderColor = "black"; 
 }
 
-
 function hideForm()
 {
   form.style.display = "none";
 }
 
-function sendForm()
-{
-  form.submit();
-}
-
+// Event listeners
 window.addEventListener('load', () => {
-  form.querySelectorAll('input').forEach(element => element.addEventListener('blur', ({ target }) => checkField(target)));
-  form.querySelectorAll('input').forEach(element => element.addEventListener('keydown', ({ target }) => checkField(target)));
-  form.querySelectorAll('input[name=location]').forEach(element => element.addEventListener('click', ({ target }) => checkField(target)));
-  form.querySelectorAll('input[name=conditions]').forEach(element => element.addEventListener('click', ({ target }) => checkField(target)));
+  form.querySelectorAll('input').forEach(element => element.addEventListener('blur', ({ target }) => isRulesValidated(target)));
+  form.querySelectorAll('input').forEach(element => element.addEventListener('keydown', ({ target }) => isRulesValidated(target)));
+  form.querySelectorAll('input[name=location]').forEach(element => element.addEventListener('click', ({ target }) => isRulesValidated(target)));
+  form.querySelectorAll('input[name=conditions]').forEach(element => element.addEventListener('click', ({ target }) => isRulesValidated(target)));
   form.addEventListener('submit', event => {
     event.preventDefault();
     checkForm(event.target);
