@@ -49,42 +49,51 @@
 			<div class="bground">
 				<div class="content">
 					<span class="close"></span>
-					<div class="modal-body">
-						<form name="reserve" action="index.html" method="POST">
+					<div class="modal-body" id="modal-body">
+						<div class="success-content">
+							<div class="success-message">
+								Merci pour votre inscription
+							</div>
+							<div class="success-close">
+								<button class="btn-close">Fermer</button>
+							</div>
+						</div>
+	
+						<form name="reserve" action="index2.html" method="POST">
 							<div class="formData">
 								<label for="firstname">Prénom</label><br>
 								<input class="text-control" type="text" id="firstname" name="firstname" minlength="2" />
 								<br>
 							</div>
-							<div class="erreur" id="error-firstname"></div>
+							<div class="erreur" id="error-firstname" name="error-firstname"></div>
 
 							<div class="formData">
 								<label for="lastname">Nom</label><br>
 								<input class="text-control" type="text" id="lastname" name="lastname" />
 								<br>
 							</div>
-							<div class="erreur" id="error-lastname"></div>
+							<div class="erreur" id="error-lastname" name="error-lastname"></div>
 
 							<div class="formData">
 								<label for="email">E-mail</label><br>
 								<input class="text-control"  id="email" name="email" />
 								<br>
 							</div>
-							<div class="erreur" id="error-email"></div>
+							<div class="erreur" id="error-email" name="error-email"></div>
 
 							<div class="formData">
 								<label for="birthdate">Date de naissance</label><br>
 								<input class="text-control" type="date" id="birthdate" name="birthdate" />
 								<br>
 							</div>
-							<div class="erreur" id="error-birthdate"></div>
+							<div class="erreur" id="error-birthdate" name="error-birthdate"></div>
 
 
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
 								<input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" />
 							</div>
-							<div class="erreur" id="error-quantity"></div>
+							<div class="erreur" id="error-quantity" name="error-quantity"></div>
 
 							<p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
 							<div class="formData">
@@ -117,7 +126,7 @@
 									<span class="checkbox-icon"></span>
 									Los Angeles</label>
 							</div>
-							<div class="erreur" id="error-location"></div>
+							<div class="erreur" id="error-location" name="error-location"></div>
 
 							<div
 									class="formData">
@@ -126,7 +135,7 @@
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
 								</label>
-								<div class="erreur" id="error-conditions"></div>
+								<div class="erreur" id="error-conditions" name="error-conditions"></div>
 
 								<br>
 								<input class="checkbox-input" type="checkbox" name="subscribe" id="subscribe" />
@@ -136,9 +145,9 @@
 								</label>
 								<br>
 							</div>
-							<div class="erreur" id="error-subscribe"></div>
+							<div class="erreur" id="error-subscribe" name="error-subscribe"></div>
 							<input class="btn-submit" type="submit" name="submit" value="C'est parti"/>
-							<div class="erreur" id="error-submit"></div>
+							<div class="erreur" id="error-submit" name="error-submit"></div>
 						</form>
 					</div>
 				</div>

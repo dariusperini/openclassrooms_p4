@@ -36,8 +36,13 @@ function checkForm(form) {
     }
   }
 
-  return validate;
+  if(validate) {
+    hideForm();
+    displaySuccess();
+    form.submit();
+  }
 }
+
 
 function checkField(field) {
   return areRulesValidated(field.name, field.value);
@@ -50,7 +55,7 @@ function areRulesValidated(fieldName, fieldValue) {
   switch (fieldName) {
     case "firstname":
     case "lastname":
-      if (fieldValue.length > 2 && !!fieldValue) { // null => false, undefined => false, '' => false
+      if (fieldValue.length >= 2 && !!fieldValue) { // null => false, undefined => false, '' => false
         returnValue = true;
       }
       break;
@@ -85,21 +90,21 @@ function areRulesValidated(fieldName, fieldValue) {
       break;
 
     case "location":
-      /**
-       * @TODO trouver dans la liste le premier qui est checked
-       */
       const locationRadioElements = document.getElementsByName(fieldName);
       returnValue = false;
-      // if () {
-      //   returnValue = true;
-      // }
+      var i=0;
+      while (i < locationRadioElements.length && !returnValue ) {
+        if (locationRadioElements[i].checked) {
+          returnValue = true;
+        }
+        i++;
+      }
+    
       break;
 
     default:
       returnValue = true;
   }
-
-  console.log(fieldName + ': ' + returnValue);
 
   if (!returnValue) {
     showError(fieldName);
@@ -115,15 +120,31 @@ function showError(fieldName) {
   mydiv = document.getElementById('error-' + fieldName);
   mydiv.style.display = "block";
   mydiv.textContent = errorMessages[fieldName];
+  mydiv.style.borderColor = "red"; 
 }
 
 function hideError(fieldName) {
   mydiv = document.getElementById('error-' + fieldName);
   mydiv.style.display = "none";
+  mydiv.style.borderColor = "black"; 
+}
+
+
+function hideForm()
+{
+  form.style.display = "none";
+}
+
+function sendForm()
+{
+  form.submit();
 }
 
 window.addEventListener('load', () => {
   form.querySelectorAll('input').forEach(element => element.addEventListener('blur', ({ target }) => checkField(target)));
+  form.querySelectorAll('input').forEach(element => element.addEventListener('keydown', ({ target }) => checkField(target)));
+  form.querySelectorAll('input[name=location]').forEach(element => element.addEventListener('click', ({ target }) => checkField(target)));
+  form.querySelectorAll('input[name=conditions]').forEach(element => element.addEventListener('click', ({ target }) => checkField(target)));
   form.addEventListener('submit', event => {
     event.preventDefault();
     checkForm(event.target);
