@@ -1,10 +1,3 @@
-/**
- * @todo
- *    Radio
- *    Date de naissance
- *    Message de confirmation quand OK
- */
-
 const form = document.querySelector('form');
 const today = new Date();
 
@@ -18,15 +11,6 @@ const errorMessages = {
   "location": "Vous devez indiquer à quel tournoi vous avez participé cette année."
 };
 
-// Pour aller plus loin
-// const validationFields = {
-//   firstname: {
-//     validate(value) {
-//       return fieldValue.length > 2 && !!fieldValue;
-//     },
-//     errorMessage: "Le champ Prénom doit avoir un minimum de 2 caractères et ne doit pas être vide."
-//   }
-// }
 
 function checkForm(form) {
   let validate = true;
