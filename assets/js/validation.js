@@ -38,11 +38,12 @@ function checkForm(form) {
     }
   }
 
-  //  Every fileds are ok, we send the form and show the success message
+  //  Every fields are ok, we send the form and show the success message
   if(validate) {
     hideForm();
     displaySuccess();
-    form.submit();
+    let formData = new FormData(form);
+    console.log(Object.fromEntries(formData))
   }
 }
 
@@ -120,17 +121,23 @@ function isRulesValidated(field) {
 
 // Show the erreor for a specified field
 function showError(fieldName) {
-  mydiv = document.getElementById('error-' + fieldName);
-  mydiv.style.display = "block";
-  mydiv.textContent = errorMessages[fieldName];
-  mydiv.style.borderColor = "red"; 
+  let errorDiv = document.getElementById('error-' + fieldName);
+  errorDiv.style.display = "block";
+  errorDiv.textContent = errorMessages[fieldName];
+  let mydiv = document.getElementById(fieldName);
+  if(mydiv) {
+    mydiv.style.borderColor = "red"; 
+  }
 }
 
 // Hide the erreor for a specified field
 function hideError(fieldName) {
-  mydiv = document.getElementById('error-' + fieldName);
-  mydiv.style.display = "none";
-  mydiv.style.borderColor = "black"; 
+  let errorDiv = document.getElementById('error-' + fieldName);
+  errorDiv.style.display = "none";
+  let mydiv = document.getElementById(fieldName);
+  if(mydiv) {
+    mydiv.style.borderColor = "black"; 
+  }
 }
 
 function hideForm()
